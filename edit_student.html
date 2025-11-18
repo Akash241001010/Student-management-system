@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <h2>Edit Student</h2>
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="student_id" class="form-label">Student ID</label>
+                        <input type="text" class="form-control" id="student_id" value="{{ student.student_id }}" disabled>
+                        <small class="text-muted">Student ID cannot be changed</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name *</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ student.name }}" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ student.email }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ student.phone or '' }}">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="course" class="form-label">Course *</label>
+                        <input type="text" class="form-control" id="course" name="course" value="{{ student.course }}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="year" class="form-label">Year *</label>
+                        <select class="form-select" id="year" name="year" required>
+                            <option value="1" {% if student.year == 1 %}selected{% endif %}>1st Year</option>
+                            <option value="2" {% if student.year == 2 %}selected{% endif %}>2nd Year</option>
+                            <option value="3" {% if student.year == 3 %}selected{% endif %}>3rd Year</option>
+                            <option value="4" {% if student.year == 4 %}selected{% endif %}>4th Year</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Update Student</button>
+            <a href="{{ url_for('view_students') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
